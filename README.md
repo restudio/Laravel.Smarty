@@ -12,13 +12,14 @@ Smarty Template Engine for Laravel
 [![Total Downloads](http://img.shields.io/packagist/dt/ytake/laravel-smarty.svg?style=flat-square)](https://packagist.org/packages/ytake/laravel-smarty)
 
 ## Installation For Laravel
-Require this package with Composer
+
+Require this package with Composer вапрекр6ке
 
 ```bash
 $ composer require ytake/laravel-smarty
 ```
 
-or composer.json 
+or composer.json
 
 ```json
 "require": {
@@ -26,28 +27,30 @@ or composer.json
 },
 ```
 
-*Supported Auto-Discovery(^Laravel5.5)*
+_Supported Auto-Discovery(^Laravel5.5)_
 
 add Laravel.Smarty Service Providers
 
-your config/app.php 
+your config/app.php
+
 ```php
 'providers' => [
     // add smarty extension
-    Ytake\LaravelSmarty\SmartyServiceProvider::class, 
-    // add artisan commands  
-    Ytake\LaravelSmarty\SmartyConsoleServiceProvider::class, 
+    Ytake\LaravelSmarty\SmartyServiceProvider::class,
+    // add artisan commands
+    Ytake\LaravelSmarty\SmartyConsoleServiceProvider::class,
 ]
 ```
 
 ## Installation For Lumen
+
 Require this package with Composer
 
 ```bash
 $ composer require ytake/laravel-smarty
 ```
 
-or composer.json 
+or composer.json
 
 ```json
 "require": {
@@ -57,7 +60,8 @@ or composer.json
 
 register Laravel.Smarty Service Providers
 
-your bootstrap/app.php 
+your bootstrap/app.php
+
 ```php
 $app->configure('ytake-laravel-smarty');
 $app->register(Ytake\LaravelSmarty\SmartyServiceProvider::class);
@@ -81,12 +85,13 @@ Of Course, Blade Template can also be used to Render Engine.
 Copy the `vendor/ytake/laravel-smarty/src/config/ytake-laravel-smarty.php` file to your local config directory
 
 ### config for Production
+
 edit config/ytake-laravel-smarty.php
 
 ```php
     // enabled smarty template cache
     'caching' => true, // default false
-    
+
     // disabled smarty template compile
     'force_compile' => false, // default true(for develop)
 ```
@@ -94,23 +99,25 @@ edit config/ytake-laravel-smarty.php
 Or
 
 add .env file
+
 ```
 SMARTY_CACHE=true
 SMARTY_COMPILE=false
 ```
 
 edit config/ytake-laravel-smarty.php
- 
+
 ```php
     'caching' => env('SMARTY_CACHING', false),
-   
+
     'force_compile' => env('SMARTY_FORCE_COMPILE', true),
 ```
 
 and more..!
 
 ## Basic
-easily use all the methods of Smarty  
+
+easily use all the methods of Smarty
 
 ```php
 // laravel5 view render
@@ -120,7 +127,7 @@ view("template.name");
 \View::make('template', ['hello']);
 // use Smarty method
 
-\View::assign('word', 'hello');  
+\View::assign('word', 'hello');
 \View::clearAllAssign(); // smarty method
 ```
 
@@ -135,26 +142,24 @@ $this->app['view']->share('title', 'laravel-smarty');
 ```
 
 ```html
-Hello Laravel.Smarty
-
-{$title}
-
-{$message}
+Hello Laravel.Smarty {$title} {$message}
 ```
 
 ## Artisan
+
 smarty's cache clear, remove compile class from Artisan(cli)
 
 ### Template cache clear
+
 ```bash
 $ php artisan ytake:smarty-clear-cache
 ```
 
-| Options  | description |
-| ------------- | ------------- |
-| --file (-f) | specify file |
-| --time (-t) | clear all of the files that are specified duration time |
-| --cache_id (-cache) | specified cache_id groups |
+| Options             | description                                             |
+| ------------------- | ------------------------------------------------------- |
+| --file (-f)         | specify file                                            |
+| --time (-t)         | clear all of the files that are specified duration time |
+| --cache_id (-cache) | specified cache_id groups                               |
 
 ### Remove compile file
 
@@ -162,26 +167,26 @@ $ php artisan ytake:smarty-clear-cache
 $ php artisan ytake:smarty-clear-compiled
 ```
 
-| Options  | description |
-| ------------- | ------------- |
-| --file (-f) | specify file |
+| Options                 | description          |
+| ----------------------- | -------------------- |
+| --file (-f)             | specify file         |
 | --compile_id (-compile) | specified compile_id |
 
 ### Template Compiler
- 
+
 ```bash
 $ php artisan ytake:smarty-optimize
 ```
 
-| Options  | description |
-| ------------- | ------------- |
-| --extension (-e) | specified smarty file extension(default: *.tpl*) |
-| --force | compiles template files found in views directory  |
+| Options          | description                                      |
+| ---------------- | ------------------------------------------------ |
+| --extension (-e) | specified smarty file extension(default: _.tpl_) |
+| --force          | compiles template files found in views directory |
 
 ## Template Caching
 
 **choose file, memcached, Redis**  
-(default file cache driver)  
+(default file cache driver)
 
 ```php
 // smarty cache driver "file", "memcached", "redis"
@@ -207,6 +212,7 @@ $ php artisan ytake:smarty-optimize
 ```
 
 ### example
+
 [registerFilter in ServiceProvider](https://gist.github.com/ytake/e8c834e88473ea3f10e7)  
 [registerFilter in Controller](https://gist.github.com/ytake/1a6f1d5312b552bc83ff)  
 [layout.sample](https://gist.github.com/ytake/11345539)  
